@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Ejemplo1Component } from "./formulario/ejemplo1/ejemplo1.component";
+import { FormsModule } from '@angular/forms';  // Importa FormsModule para habilitar ngModel
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Ejemplo1Component],
+  imports: [RouterOutlet, FormsModule],  // Asegúrate de importar FormsModule aquí
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'angularSegundo';

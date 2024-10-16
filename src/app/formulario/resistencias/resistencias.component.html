@@ -1,0 +1,68 @@
+<div class="container">
+    <h2>Registro de Resistencias</h2>
+  
+    <form (ngSubmit)="calcularResistencia()">
+      <label for="banda1">Primera Banda (Color):</label>
+      <select [(ngModel)]="banda1" name="banda1" required>
+        <option value="0">Negro</option>
+        <option value="1">Café</option>
+        <option value="2">Rojo</option>
+        <option value="3">Naranja</option>
+        <!-- Más opciones -->
+      </select><br>
+  
+      <label for="banda2">Segunda Banda (Color):</label>
+      <select [(ngModel)]="banda2" name="banda2" required>
+        <option value="0">Negro</option>
+        <option value="1">Café</option>
+        <option value="2">Rojo</option>
+        <option value="3">Naranja</option>
+        <!-- Más opciones -->
+      </select><br>
+  
+      <label for="multiplicador">Multiplicador:</label>
+      <select [(ngModel)]="multiplicador" name="multiplicador" required>
+        <option value="1">x1</option>
+        <option value="10">x10</option>
+        <option value="100">x100</option>
+        <!-- Más opciones -->
+      </select><br>
+  
+      <label for="tolerancia">Tolerancia:</label>
+      <select [(ngModel)]="tolerancia" name="tolerancia" required>
+        <option value="5">Dorado (±5%)</option>
+        <option value="10">Plata (±10%)</option>
+        <option value="2">Rojo (±2%)</option>
+      </select><br>
+  
+      <button type="submit">Registrar</button>
+    </form>
+  
+    <button *ngIf="mostrarTabla" (click)="mostrarTabla = !mostrarTabla">Mostrar Tabla</button>
+  
+    <table *ngIf="mostrarTabla" border="1">
+      <thead>
+        <tr>
+          <th>Banda 1</th>
+          <th>Banda 2</th>
+          <th>Multiplicador</th>
+          <th>Tolerancia</th>
+          <th>Valor</th>
+          <th>Valor Máximo</th>
+          <th>Valor Mínimo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ banda1 }}</td>
+          <td>{{ banda2 }}</td>
+          <td>{{ multiplicador }}</td>
+          <td>{{ tolerancia }}%</td>
+          <td>{{ valor }}</td>
+          <td>{{ valorMax }}</td>
+          <td>{{ valorMin }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
