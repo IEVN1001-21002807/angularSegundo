@@ -1,68 +1,90 @@
 <div class="container">
-    <h2>Registro de Resistencias</h2>
-  
-    <form (ngSubmit)="calcularResistencia()">
-      <label for="banda1">Primera Banda (Color):</label>
-      <select [(ngModel)]="banda1" name="banda1" required>
-        <option value="0">Negro</option>
-        <option value="1">Café</option>
-        <option value="2">Rojo</option>
-        <option value="3">Naranja</option>
-        <!-- Más opciones -->
-      </select><br>
-  
-      <label for="banda2">Segunda Banda (Color):</label>
-      <select [(ngModel)]="banda2" name="banda2" required>
-        <option value="0">Negro</option>
-        <option value="1">Café</option>
-        <option value="2">Rojo</option>
-        <option value="3">Naranja</option>
-        <!-- Más opciones -->
-      </select><br>
-  
-      <label for="multiplicador">Multiplicador:</label>
-      <select [(ngModel)]="multiplicador" name="multiplicador" required>
-        <option value="1">x1</option>
-        <option value="10">x10</option>
-        <option value="100">x100</option>
-        <!-- Más opciones -->
-      </select><br>
-  
-      <label for="tolerancia">Tolerancia:</label>
-      <select [(ngModel)]="tolerancia" name="tolerancia" required>
-        <option value="5">Dorado (±5%)</option>
-        <option value="10">Plata (±10%)</option>
-        <option value="2">Rojo (±2%)</option>
-      </select><br>
-  
-      <button type="submit">Registrar</button>
-    </form>
-  
-    <button *ngIf="mostrarTabla" (click)="mostrarTabla = !mostrarTabla">Mostrar Tabla</button>
-  
-    <table *ngIf="mostrarTabla" border="1">
-      <thead>
+  <h2>Registro de Resistencias</h2>
+
+  <form (ngSubmit)="calcularResistencia()">
+    <label for="banda1">Primera Banda (Color1):</label>
+    <select [(ngModel)]="banda1" name="banda1" required>
+      <option value="0">Negro</option>
+      <option value="1">Café</option>
+      <option value="2">Rojo</option>
+      <option value="3">Naranja</option>
+      <option value="4">Amarillo</option>
+      <option value="5">Verde</option>
+      <option value="6">Azul</option>
+      <option value="7">Violeta</option>
+      <option value="8">Gris</option>
+      <option value="9">Blanco</option>
+    </select><br>
+
+    <label for="banda2">Segunda Banda (Color2):</label>
+    <select [(ngModel)]="banda2" name="banda2" required>
+      <option value="0">Negro</option>
+      <option value="1">Café</option>
+      <option value="2">Rojo</option>
+      <option value="3">Naranja</option>
+      <option value="4">Amarillo</option>
+      <option value="5">Verde</option>
+      <option value="6">Azul</option>
+      <option value="7">Violeta</option>
+      <option value="8">Gris</option>
+      <option value="9">Blanco</option>
+    </select><br>
+
+    <label for="banda3">Tercera Banda (Color3):</label>
+    <select [(ngModel)]="banda3" name="banda3" required>
+      <option value="0">Negro</option>
+      <option value="1">Café</option>
+      <option value="2">Rojo</option>
+      <option value="3">Naranja</option>
+      <option value="4">Amarillo</option>
+      <option value="5">Verde</option>
+      <option value="6">Azul</option>
+      <option value="7">Violeta</option>
+      <option value="8">Gris</option>
+      <option value="9">Blanco</option>
+    </select><br>
+
+    <label for="tolerancia">Tolerancia:</label>
+    <div>
+      <input type="radio" [(ngModel)]="tolerancia" name="tolerancia" value="5" required>Dorado (±5%)<br>
+      <input type="radio" [(ngModel)]="tolerancia" name="tolerancia" value="10" required>Plata (±10%)<br>
+      <input type="radio" [(ngModel)]="tolerancia" name="tolerancia" value="2" required>Rojo (±2%)<br>
+    </div>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <button *ngIf="mostrarTabla" (click)="mostrarTabla = !mostrarTabla">Ocultar Tabla</button>
+
+  <table *ngIf="mostrarTabla" border="1">
+    <thead>
+      <tr>
+        <th>Color 1</th>
+        <th>Color 2</th>
+        <th>Color 3</th>
+        <th>Tolerancia</th>
+        <th>Valor</th>
+        <th>Valor Máximo</th>
+        <th>Valor Mínimo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
         <tr>
-          <th>Banda 1</th>
-          <th>Banda 2</th>
-          <th>Multiplicador</th>
-          <th>Tolerancia</th>
-          <th>Valor</th>
-          <th>Valor Máximo</th>
-          <th>Valor Mínimo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ banda1 }}</td>
-          <td>{{ banda2 }}</td>
-          <td>{{ multiplicador }}</td>
-          <td>{{ tolerancia }}%</td>
-          <td>{{ valor }}</td>
-          <td>{{ valorMax }}</td>
-          <td>{{ valorMin }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+      <td [style.background-color]="getColorCode(banda1)" [style.color]="banda1 === 9 ? 'black' : 'white'">
+        {{ getColorName(banda1) }}
+      </td>
+      <td [style.background-color]="getColorCode(banda2)" [style.color]="banda2 === 9 ? 'black' : 'white'">
+        {{ getColorName(banda2) }}
+      </td>
+      <td [style.background-color]="getColorCode(banda3)" [style.color]="banda3 === 9 ? 'black' : 'white'">
+        {{ getColorName(banda3) }}
+      </td>
+      <td>{{ tolerancia }}%</td>
+        <td>{{ valor }}</td>
+        <td>{{ valorMax }}</td>
+        <td>{{ valorMin }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

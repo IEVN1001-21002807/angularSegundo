@@ -9,4 +9,5 @@ export const routes: Routes = [
         path:'formulario',
         loadChildren:()=> import('./formulario/form.route')
     }
+      
 ];

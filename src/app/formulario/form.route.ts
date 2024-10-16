@@ -8,5 +8,6 @@ export default[
     {
         path: 'resistencia',
         loadComponent:()=>import('./resistencias/resistencias.component'),
-    }
+     }
+     
 ]as Routes
