@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Definición de la interfaz para el empleado
 export interface Empleado {
   matricula: string;
   nombre: string;
@@ -19,10 +18,8 @@ export interface Empleado {
 })
 export default class EmpleadosComponent {
 
-  // Lista de empleados
   empleados: Empleado[] = [];
 
-  // Objeto para el nuevo empleado o el que está siendo editado
   nuevoEmpleado: Empleado = {
     matricula: '',
     nombre: '',
@@ -31,27 +28,23 @@ export default class EmpleadosComponent {
     horasTrabajadas: 0
   };
 
-  // Variables para mensajes de retroalimentación
   mensaje: string = '';
-  mensajeTipo: string = ''; // 'exito', 'error', 'advertencia'
+  mensajeTipo: string = ''; 
 
-  // Variables para manejo de edición de empleado
   editando: boolean = false;
   matriculaOriginal: string = '';
 
-  // Variable para buscar empleado por matrícula
   matriculaBuscar: string = '';  
 
   constructor() {
-    this.cargarEmpleados(); // Cargar empleados almacenados en localStorage al inicializar el componente
+    this.cargarEmpleados(); 
   }
 
-  // Registrar o modificar empleado
   registrarEmpleado() {
     if (this.editando) {
       const index = this.empleados.findIndex(emp => emp.matricula === this.matriculaOriginal);
       if (index !== -1) {
-        this.empleados[index] = { ...this.nuevoEmpleado }; // Modificar empleado existente
+        this.empleados[index] = { ...this.nuevoEmpleado }; 
         this.mensaje = 'Empleado modificado con éxito.';
         this.mensajeTipo = 'exito';
       } else {
@@ -61,15 +54,14 @@ export default class EmpleadosComponent {
       this.editando = false;
       this.matriculaOriginal = '';
     } else {
-      this.empleados.push({ ...this.nuevoEmpleado }); // Registrar nuevo empleado
+      this.empleados.push({ ...this.nuevoEmpleado }); 
       this.mensaje = 'Empleado registrado con éxito.';
       this.mensajeTipo = 'exito';
     }
-    this.guardarEmpleados(); // Guardar en localStorage
-    this.limpiarFormulario(); // Limpiar el formulario después de registrar
+    this.guardarEmpleados(); 
+    this.limpiarFormulario();
   }
 
-  // Modificar empleado encontrado por matrícula
   modificarEmpleadoPorMatricula() {
     const empleado = this.empleados.find(emp => emp.matricula === this.matriculaBuscar);
     if (empleado) {
@@ -84,21 +76,19 @@ export default class EmpleadosComponent {
     }
   }
 
-  // Eliminar empleado encontrado por matrícula
   eliminarEmpleadoPorMatricula() {
     const index = this.empleados.findIndex(emp => emp.matricula === this.matriculaBuscar);
     if (index !== -1) {
-      this.empleados.splice(index, 1); // Eliminar empleado
+      this.empleados.splice(index, 1); 
       this.mensaje = 'Empleado eliminado con éxito.';
       this.mensajeTipo = 'exito';
-      this.guardarEmpleados(); // Actualizar localStorage
+      this.guardarEmpleados(); 
     } else {
       this.mensaje = 'Empleado no encontrado.';
       this.mensajeTipo = 'error';
     }
   }
 
-  // Calcular el pago de un empleado
   calcularPago(empleado: Empleado): number {
     const tarifaNormal = 70;
     const tarifaExtra = 140;
@@ -107,17 +97,22 @@ export default class EmpleadosComponent {
     return (horasNormales * tarifaNormal) + (horasExtra * tarifaExtra);
   }
 
-  // Calcular el total a pagar a todos los empleados
   calcularTotalPago(): number {
     return this.empleados.reduce((total, empleado) => total + this.calcularPago(empleado), 0);
   }
 
-  // Guardar empleados en localStorage
+  calcularHorasNormales(empleado: Empleado): number {
+    return empleado.horasTrabajadas > 40 ? 40 : empleado.horasTrabajadas;
+  }
+
+  calcularHorasExtras(empleado: Empleado): number {
+    return empleado.horasTrabajadas > 40 ? empleado.horasTrabajadas - 40 : 0;
+  }
+
   guardarEmpleados() {
     localStorage.setItem('empleados', JSON.stringify(this.empleados));
   }
 
-  // Cargar empleados desde localStorage
   cargarEmpleados() {
     const empleadosGuardados = localStorage.getItem('empleados');
     if (empleadosGuardados) {
@@ -125,9 +120,8 @@ export default class EmpleadosComponent {
     }
   }
 
-  // Limpiar el formulario para registrar un nuevo empleado
   limpiarFormulario() {
     this.nuevoEmpleado = { matricula: '', nombre: '', correo: '', edad: 0, horasTrabajadas: 0 };
-    this.matriculaBuscar = ''; // Limpiar la búsqueda también
+    this.matriculaBuscar = ''; 
   }
 }

@@ -1,99 +1,112 @@
-<h2 class="text-center text-2xl font-bold text-gray-800 mb-6">Registro de Resistencias</h2>
+<div class="container mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-6 text-center">Registro de Resistencias</h2>
+  
+  <div class="flex flex-col lg:flex-row lg:space-x-8">
+    <form (ngSubmit)="calcularResistencia()" class="space-y-4 lg:w-1/2">
+      <div>
+        <label for="banda1" class="block font-semibold">Primera Banda (Color1):</label>
+        <select [(ngModel)]="banda1" name="banda1" required class="mt-1 block w-full p-2 border rounded-md bg-gray-100">
+          <option value="0">Negro</option>
+          <option value="1">Café</option>
+          <option value="2">Rojo</option>
+          <option value="3">Naranja</option>
+          <option value="4">Amarillo</option>
+          <option value="5">Verde</option>
+          <option value="6">Azul</option>
+          <option value="7">Violeta</option>
+          <option value="8">Gris</option>
+          <option value="9">Blanco</option>
+        </select>
+      </div>
 
-<div class="flex justify-between items-start space-x-6 p-6">
+      <div>
+        <label for="banda2" class="block font-semibold">Segunda Banda (Color2):</label>
+        <select [(ngModel)]="banda2" name="banda2" required class="mt-1 block w-full p-2 border rounded-md bg-gray-100">
+          <option value="0">Negro</option>
+          <option value="1">Café</option>
+          <option value="2">Rojo</option>
+          <option value="3">Naranja</option>
+          <option value="4">Amarillo</option>
+          <option value="5">Verde</option>
+          <option value="6">Azul</option>
+          <option value="7">Violeta</option>
+          <option value="8">Gris</option>
+          <option value="9">Blanco</option>
+        </select>
+      </div>
 
-  <form (ngSubmit)="calcularResistencia()" class="flex flex-col space-y-4">
-    <div>
-      <label for="banda1" class="block text-gray-700">Primera Banda (Color1):</label>
-      <select [(ngModel)]="banda1" name="banda1" required class="w-full p-2 border border-gray-300 rounded">
-        <option value="0">Negro</option>
-        <option value="1">Café</option>
-        <option value="2">Rojo</option>
-        <option value="3">Naranja</option>
-        <option value="4">Amarillo</option>
-        <option value="5">Verde</option>
-        <option value="6">Azul</option>
-        <option value="7">Violeta</option>
-        <option value="8">Gris</option>
-        <option value="9">Blanco</option>
-      </select>
-    </div>
+      <div>
+        <label for="banda3" class="block font-semibold">Tercera Banda (Color3):</label>
+        <select [(ngModel)]="banda3" name="banda3" required class="mt-1 block w-full p-2 border rounded-md bg-gray-100">
+          <option value="0">Negro</option>
+          <option value="1">Café</option>
+          <option value="2">Rojo</option>
+          <option value="3">Naranja</option>
+          <option value="4">Amarillo</option>
+          <option value="5">Verde</option>
+          <option value="6">Azul</option>
+          <option value="7">Violeta</option>
+          <option value="8">Gris</option>
+          <option value="9">Blanco</option>
+        </select>
+      </div>
 
-    <div>
-      <label for="banda2" class="block text-gray-700">Segunda Banda (Color2):</label>
-      <select [(ngModel)]="banda2" name="banda2" required class="w-full p-2 border border-gray-300 rounded">
-        <option value="0">Negro</option>
-        <option value="1">Café</option>
-        <option value="2">Rojo</option>
-        <option value="3">Naranja</option>
-        <option value="4">Amarillo</option>
-        <option value="5">Verde</option>
-        <option value="6">Azul</option>
-        <option value="7">Violeta</option>
-        <option value="8">Gris</option>
-        <option value="9">Blanco</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="banda3" class="block text-gray-700">Tercera Banda (Color3):</label>
-      <select [(ngModel)]="banda3" name="banda3" required class="w-full p-2 border border-gray-300 rounded">
-        <option value="0">Negro</option>
-        <option value="1">Café</option>
-        <option value="2">Rojo</option>
-        <option value="3">Naranja</option>
-        <option value="4">Amarillo</option>
-        <option value="5">Verde</option>
-        <option value="6">Azul</option>
-        <option value="7">Violeta</option>
-        <option value="8">Gris</option>
-        <option value="9">Blanco</option>
-      </select>
-    </div>
-
-    <div>
-      <label for="tolerancia" class="block text-gray-700">Tolerancia:</label>
-      <div class="space-y-2">
-        <div>
-          <input type="radio" (change)="setTolerancia('Dorado')" name="tolerancia" required checked class="mr-2"> Dorado (±5%)
-        </div>
-        <div>
-          <input type="radio" (change)="setTolerancia('Plata')" name="tolerancia" required class="mr-2"> Plata (±10%)
+      <div class="mt-4">
+        <label for="tolerancia" class="block font-semibold">Tolerancia:</label>
+        <div class="flex items-center space-x-4 mt-2">
+          <label class="inline-flex items-center">
+            <input type="radio" (change)="setTolerancia('Dorado')" name="tolerancia" required class="form-radio text-yellow-500">
+            <span class="ml-2">Dorado (±5%)</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" (change)="setTolerancia('Plata')" name="tolerancia" required class="form-radio text-gray-400">
+            <span class="ml-2">Plata (±10%)</span>
+          </label>
         </div>
       </div>
+
+      <button type="submit" class="block w-full bg-purple-600 text-white font-bold py-2 rounded-md mt-6 hover:bg-purple-700">
+        Registrar
+      </button>
+    </form>
+
+    <div class="lg:w-1/2 mt-8 lg:mt-0">
+      <button *ngIf="mostrarTabla" (click)="mostrarTabla = !mostrarTabla" class="block w-full bg-red-500 text-white font-semibold py-2 rounded-md mb-4 hover:bg-red-600">
+        Ocultar Tabla
+      </button>
+
+      <table *ngIf="mostrarTabla" class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Color 1</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Color 2</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Color 3</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Tolerancia</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Valor</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Valor Máximo</th>
+            <th class="border border-gray-300 p-2 bg-gray-100 font-semibold">Valor Mínimo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resistencia of resistenciasRegistradas" class="text-center">
+            <td [style.background-color]="getColorCode(resistencia.banda1)" [style.color]="resistencia.banda1 === 'Blanco' ? 'black' : 'white'" class="border border-gray-300 p-2">
+              {{ resistencia.banda1 }}
+            </td>
+            <td [style.background-color]="getColorCode(resistencia.banda2)" [style.color]="resistencia.banda2 === 'Blanco' ? 'black' : 'white'" class="border border-gray-300 p-2">
+              {{ resistencia.banda2 }}
+            </td>
+            <td [style.background-color]="getColorCode(resistencia.banda3)" [style.color]="resistencia.banda3 === 'Blanco' ? 'black' : 'white'" class="border border-gray-300 p-2">
+              {{ resistencia.banda3 }}
+            </td>
+            <td [ngStyle]="{'background-color': resistencia.tolerancia === 'Dorado' ? '#FFD700' : '#BEBEBE'}" class="border border-gray-300 p-2">
+              {{ resistencia.tolerancia }}
+            </td>
+            <td class="border border-gray-300 p-2">{{ resistencia.valor }}</td>
+            <td class="border border-gray-300 p-2">{{ resistencia.valorMax }}</td>
+            <td class="border border-gray-300 p-2">{{ resistencia.valorMin }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">Registrar</button>
-  </form>
-  <div class="w-1/2">
-  <button *ngIf="mostrarTabla" (click)="mostrarTabla = !mostrarTabla" class="mt-4 w-full bg-red-500 text-white p-2 rounded hover:bg-red-600">Ocultar Tabla</button>
-
-  <table *ngIf="mostrarTabla" class="w-full mt-6 border-collapse border border-black">
-    <thead>
-      <tr class="bg-gray-200">
-        <th class="border border-black px-4 py-2">Color 1</th>
-        <th class="border border-black px-4 py-2">Color 2</th>
-        <th class="border border-black px-4 py-2">Color 3</th>
-        <th class="border border-black px-4 py-2">Tolerancia</th>
-        <th class="border border-black px-4 py-2">Valor</th>
-        <th class="border border-black px-4 py-2">Valor Máximo</th>
-        <th class="border border-black px-4 py-2">Valor Mínimo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td [style.background-color]="getColorCode(getColorName(banda1))" [style.color]="banda1 === 9 ? 'black' : 'white'" class="border border-black px-4 py-2">{{ getColorName(banda1) }}</td>
-        <td [style.background-color]="getColorCode(getColorName(banda2))" [style.color]="banda2 === 9 ? 'black' : 'white'" class="border border-black px-4 py-2">{{ getColorName(banda2) }}</td>
-        <td [style.background-color]="getColorCode(getColorName(banda3))" [style.color]="banda3 === 9 ? 'black' : 'white'" class="border border-black px-4 py-2">{{ getColorName(banda3) }}</td>
-        <td class="border border-black px-4 py-2" [ngStyle]="{'background-color': tolerancia === 'Dorado' ? '#FFD700' : '#BEBEBE', 'padding': '10px', 'border-radius': '5px'}">
-          % {{ tolerancia }}
-          
-        </td>
-        <td class="border border-black px-4 py-2">{{ valor }}</td>
-        <td class="border border-black px-4 py-2">{{ valorMax }}</td>
-        <td class="border border-black px-4 py-2">{{ valorMin }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  </div>
 </div>

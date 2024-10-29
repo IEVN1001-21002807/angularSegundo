@@ -44,7 +44,9 @@
           <th class="px-6 py-3 border-b-2 border-gray-300">Correo</th>
           <th class="px-6 py-3 border-b-2 border-gray-300">Edad</th>
           <th class="px-6 py-3 border-b-2 border-gray-300">Horas Trabajadas</th>
-          <th class="px-6 py-3 border-b-2 border-gray-300">Pago</th>
+          <th class="px-6 py-3 border-b-2 border-gray-300">Pago por Horas</th>
+          <th class="px-6 py-3 border-b-2 border-gray-300">Pago por Horas Extra</th>
+          <th class="px-6 py-3 border-b-2 border-gray-300">Subtotal</th>
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
@@ -53,14 +55,16 @@
           <td class="px-6 py-4 border-b border-gray-300">{{ empleado.nombre }}</td>
           <td class="px-6 py-4 border-b border-gray-300">{{ empleado.correo }}</td>
           <td class="px-6 py-4 border-b border-gray-300">{{ empleado.edad }}</td>
-          <td class="px-6 py-4 border-b border-gray-300">{{ empleado.horasTrabajadas }}</td>
-          <td class="px-6 py-4 border-b border-gray-300">{{ calcularPago(empleado) }}</td>
+          <td>{{ empleado.horasTrabajadas }}</td>
+          <td>$ {{ calcularHorasNormales(empleado) * 70 }}</td>
+          <td>$ {{ calcularHorasExtras(empleado) * 140 }}</td>
+          <td>$ {{ calcularPago(empleado) }}</td>
         </tr>
       </tbody>
-      <tfoot class="bg-gray-50 dark:bg-gray-800">
+      <tfoot class="bg-gray-50  divide-gray-200">
         <tr>
           <td colspan="5" class="px-6 py-4 text-right font-bold">Total a Pagar:</td>
-          <td class="px-6 py-4 font-bold">{{ calcularTotalPago() }}</td>
+          <td class="px-6 py-4 font-bold">${{ calcularTotalPago() }}</td>
         </tr>
       </tfoot>
     </table>

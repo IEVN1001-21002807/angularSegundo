@@ -1,47 +1,52 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';  
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-resistencias',
   standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './resistencias.component.html'
+  imports: [FormsModule, CommonModule],  
+  templateUrl: './resistencias.component.html',
 })
 export default class ResistenciasComponent {
   banda1: number = 0;
   banda2: number = 0;
-  banda3: number = 0;
-  tolerancia: string = 'Dorado';
+  banda3: number = 0; 
+  tolerancia: string = 'Dorado'; 
   valor: number = 0;
   valorMax: number = 0;
   valorMin: number = 0;
   mostrarTabla: boolean = false;
 
-  resistenciasGuardadas: any[] = []; 
-
-  constructor() {
-    localStorage.removeItem('resistencias');
-  }
+  resistenciasRegistradas: any[] = [];
 
   calcularResistencia() {
     const banda1Valor = this.banda1.toString();
     const banda2Valor = this.banda2.toString();
     this.valor = parseInt(banda1Valor + banda2Valor) * this.getMultiplicador(this.banda3);
 
-    const toleranciaPorcentaje = this.tolerancia === 'Dorado' ? 0.05 : 0.1;
+    const toleranciaPorcentaje = this.tolerancia === 'Dorado' ? 0.05 : 0.1; 
     this.valorMax = this.valor + this.valor * toleranciaPorcentaje;
     this.valorMin = this.valor - this.valor * toleranciaPorcentaje;
 
-    const resistencia = {
+    this.resistenciasRegistradas.push({
+      banda1: this.getColorName(this.banda1),
+      banda2: this.getColorName(this.banda2),
+      banda3: this.getColorName(this.banda3),
+      tolerancia: this.tolerancia,
+      valor: this.valor,
+      valorMax: this.valorMax,
+      valorMin: this.valorMin
+    });
+
+    const resistenciaParaGuardar = {
       banda1: this.getColorName(this.banda1),
       banda2: this.getColorName(this.banda2),
       banda3: this.getColorName(this.banda3),
       tolerancia: this.tolerancia
     };
 
-    this.resistenciasGuardadas.push(resistencia); 
-    localStorage.setItem('resistencias', JSON.stringify(this.resistenciasGuardadas));
+    localStorage.setItem('resistencia', JSON.stringify(resistenciaParaGuardar));
 
     this.mostrarTabla = true;
   }
@@ -56,12 +61,12 @@ export default class ResistenciasComponent {
   }
 
   getColorName(banda: number): string {
-    const colores = ['Negro', 'Café', 'Rojo', 'Naranja', 'Amarillo', 'Verde', 'Azul', 'Violeta', 'Gris', 'Blanco'];
+    const colores = ['Negro', 'Café', 'Rojo', 'Naranja', 'Amarillo', 'Verde', 'Azul', 'Violeta', 'Gris', 'Blanco', 'Dorado', 'Plata'];
     return colores[banda] || '';
   }
 
   getColorCode(color: string): string {
-    const colores: { [key: string]: string } = {
+    const colores: { [key: string]: string } = { 
       'Negro': '#000000',
       'Café': '#8B4513',
       'Rojo': '#FF0000',
@@ -71,7 +76,9 @@ export default class ResistenciasComponent {
       'Azul': '#0000FF',
       'Violeta': '#EE82EE',
       'Gris': '#808080',
-      'Blanco': '#FFFFFF'
+      'Blanco': '#FFFFFF',
+      'Dorado': '#FFD700',
+      'Plata': '#BEBEBE'
     };
     return colores[color] || '#000000';
   }

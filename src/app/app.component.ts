@@ -7,7 +7,7 @@ import { ListMessageComponent } from './tem/list-message/list-message.component'
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, AddMessageComponent, ListMessageComponent, ReactiveFormsModule], 
+  imports: [RouterOutlet, FormsModule, AddMessageComponent, ListMessageComponent, ReactiveFormsModule], // Asegúrate de que ReactiveFormsModule está aquí
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
