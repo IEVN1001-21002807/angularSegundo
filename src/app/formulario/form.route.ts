@@ -12,6 +12,10 @@ export default[
     {
         path: 'empleados',
         loadComponent:()=>import('./empleados/empleados.component'),
+    },
+    {
+        path: 'pizzas',
+        loadComponent:()=>import('./pizzeria/pizzeria.component'),
     }
      
 ]as Routes

@@ -1,0 +1,64 @@
+<div class="flex align-content-center justify-center">
+  <div class="max-w-lg w-full p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-semibold text-center mb-6">Formulario de Pedido de Pizza</h2>
+
+    <form [formGroup]="formularioPedido" (ngSubmit)="onSubmit()">
+      <!-- Datos del cliente -->
+      <div class="mb-4">
+        <label for="clienteNombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+        <input type="text" id="clienteNombre" formControlName="clienteNombre" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="clienteDireccion" class="block text-sm font-medium text-gray-700">Dirección</label>
+        <input type="text" id="clienteDireccion" formControlName="clienteDireccion" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="clienteTelefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+        <input type="tel" id="clienteTelefono" formControlName="clienteTelefono" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="fechaCompra" class="block text-sm font-medium text-gray-700">Fecha de Compra</label>
+        <input type="date" id="fechaCompra" formControlName="fechaCompra" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" [disabled]="true">
+      </div>
+
+      <!-- Tamaño -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Tamaño</label>
+        <div class="flex space-x-4">
+          <div class="flex items-center" *ngFor="let tamano of opcionesTamanos">
+            <input type="radio" [id]="tamano" formControlName="tamano" [value]="tamano" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500" required>
+            <label [for]="tamano" class="ml-2 text-sm text-gray-700">{{ tamano }}</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredientes -->
+      <div class="mb-4" formGroupName="ingredientes">
+        <label class="block text-sm font-medium text-gray-700">Elige los ingredientes</label>
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center" *ngFor="let ingrediente of opcionesIngredientes">
+            <input type="checkbox" [id]="ingrediente" [formControlName]="ingrediente" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+            <label [for]="ingrediente" class="ml-2 text-sm text-gray-700">{{ ingrediente }}</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cantidad de Pizzas -->
+      <div class="mb-4">
+        <label for="cantidad" class="block text-sm font-medium text-gray-700">Cantidad de Pizzas</label>
+        <input type="number" id="cantidad" formControlName="cantidad" min="1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+      </div>
+
+      <!-- Botón de Enviar -->
+      <div class="flex justify-center">
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          Añadir Pedido
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- ... -->
+</div>

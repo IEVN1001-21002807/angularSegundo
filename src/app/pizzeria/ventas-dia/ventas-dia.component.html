@@ -1,0 +1,23 @@
+<h3 class="text-xl font-semibold mb-4 text-center bg-gray-300 border-b-2 border-gray-400 p-2">Ventas del Día</h3>
+
+    <div class="mb-4">
+      <input class="w-full border border-gray-300 rounded-md p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+             placeholder="Fecha (dd/mm/yyyy)" [(ngModel)]="fechaSeleccionada" type="date"/>
+      <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md" (click)="mostrarVentasPorDia()">Mostrar Ventas del Día</button>
+    </div>
+
+    <div class="mb-4">
+      <input class="w-full border border-gray-300 rounded-md p-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+             placeholder="Mes (yyyy-mm)" [(ngModel)]="mesSeleccionado" type="month"/>
+      <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md" (click)="mostrarVentasPorMes()">Mostrar Ventas del Mes</button>
+    </div>
+
+    <div *ngIf="pedidosDia.length > 0" class="mt-4 bg-gray-200 p-4 rounded-md border-t-2 border-gray-400">
+      <h4 class="text-lg font-semibold mb-2 border-b border-gray-300 pb-2">Pedidos</h4>
+      <ul class="list-disc pl-5 space-y-1">
+        <li *ngFor="let pedido of pedidosDia" class="text-gray-700">{{ pedido.nombreCliente }} Total: ${{ pedido.total }}</li>
+      </ul>
+      <h4 class="text-lg font-semibold mt-4 text-gray-800 border-t border-gray-300 pt-2">Ventas Totales: ${{ ventasTotalesDia }}</h4>
+    </div>
+
+    <div *ngIf="pedidosDia.length === 0" class="mt-4 text-center text-gray-600">No hay ventas registradas para esta fecha.</div>
